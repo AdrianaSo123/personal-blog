@@ -3,8 +3,8 @@ import Link from 'next/link';
 import './globals.css';
 
 export const metadata: Metadata = {
-    title: "My Blog",
-    description: 'Personal blog.',
+    title: "Adriana's Blog",
+    description: 'Personal blog by Adriana.',
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
                 <header className="site-header">
                     <nav className="nav-inner">
                         <Link href="/" className="nav-logo">
-                            Blog<span className="logo-dot">.</span>
+                            adriana<span className="logo-dot">.</span>
                         </Link>
                         <div className="nav-links">
                             <Link href="/" className="nav-link">Home</Link>
@@ -38,7 +38,7 @@ export default function RootLayout({
                 <main className="main-content">{children}</main>
 
                 <footer className="site-footer">
-                    <p>© {new Date().getFullYear()} — Built with Next.js &amp; Markdown</p>
+                    <p>© {new Date().getFullYear()} Adriana — Built with Next.js &amp; Markdown</p>
                 </footer>
             </body>
         </html>
