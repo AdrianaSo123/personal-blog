@@ -137,37 +137,33 @@ body {
   pointer-events: none;
 }
 
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent-light);
-  margin-bottom: 1.5rem;
+.hero-greeting {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.01em;
 }
 
-.hero-eyebrow::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--accent-light);
-}
-
-.hero-headline {
+.hero-name {
   font-family: 'Playfair Display', Georgia, serif;
-  font-size: clamp(2.4rem, 5.5vw, 3.6rem);
+  font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  margin-bottom: 1.75rem;
-  background: linear-gradient(140deg, var(--text-primary) 40%, var(--accent-light) 100%);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 1rem;
+  background: linear-gradient(140deg, var(--text-primary) 30%, var(--accent-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.hero-role {
+  font-size: 1.05rem;
+  color: var(--accent-light);
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+  letter-spacing: 0.01em;
 }
 
 .hero-body {
@@ -175,7 +171,7 @@ body {
   color: var(--text-secondary);
   font-size: 1.05rem;
   line-height: 1.8;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .hero-body p {
@@ -185,6 +181,13 @@ body {
 .hero-body strong {
   color: var(--text-primary);
   font-weight: 600;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .hero-cta {
@@ -205,6 +208,25 @@ body {
 .hero-cta:hover {
   opacity: 0.88;
   transform: translateY(-1px);
+}
+
+.hero-cta-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.65rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.hero-cta-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--border-hover);
 }
 
 /* ────────────────────── SECTION DIVIDER ─── */

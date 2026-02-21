@@ -10,15 +10,21 @@ export default async function HomePage() {
         <>
             {/* ── Hero ── */}
             <section className="home-hero">
-                <span className="hero-eyebrow">Personal Blog</span>
-                <h1 className="hero-headline">{home.tagline}</h1>
+                <p className="hero-greeting">Hi, I&apos;m</p>
+                <h1 className="hero-name">Adriana.</h1>
+                <p className="hero-role">{home.tagline}</p>
                 <div
                     className="hero-body"
                     dangerouslySetInnerHTML={{ __html: home.bodyHtml }}
                 />
-                <Link href="/blog" className="hero-cta">
-                    Read the blog →
-                </Link>
+                <div className="hero-actions">
+                    <Link href="/blog" className="hero-cta">
+                        Read the blog →
+                    </Link>
+                    <Link href="/blog" className="hero-cta-ghost">
+                        View all posts
+                    </Link>
+                </div>
             </section>
 
             {/* ── Latest posts preview ── */}
