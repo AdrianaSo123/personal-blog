@@ -15,12 +15,19 @@ export async function generateMetadata({ params }: Props) {
     try {
         const post = await getPostBySlug(slug);
         return {
-            title: `${post.title} — Adrian's Blog`,
+            title: `${post.title} — Blog`,
             description: post.excerpt,
         };
     } catch {
-        return { title: "Post not found" };
+        return { title: 'Post not found' };
     }
+}
+
+function readingTime(contentHtml: string): string {
+    const text = contentHtml.replace(/<[^>]+>/g, '');
+    const words = text.trim().split(/\s+/).length;
+    const mins = Math.max(1, Math.round(words / 200));
+    return `${mins} min read`;
 }
 
 export default async function BlogPostPage({ params }: Props) {
@@ -35,8 +42,8 @@ export default async function BlogPostPage({ params }: Props) {
 
     return (
         <article className="post-page">
-            <Link href="/" className="back-link">
-                ← Back
+            <Link href="/blog" className="back-link">
+                ← All posts
             </Link>
 
             <header className="post-header">
@@ -48,6 +55,7 @@ export default async function BlogPostPage({ params }: Props) {
                             day: 'numeric',
                         })}
                     </span>
+                    <span className="post-reading-time">{readingTime(post.contentHtml)}</span>
                     {post.tags && post.tags.length > 0 && (
                         <div className="post-card-tags">
                             {post.tags.map((tag) => (
@@ -56,8 +64,9 @@ export default async function BlogPostPage({ params }: Props) {
                         </div>
                     )}
                 </div>
+
                 <h1 className="post-title">{post.title}</h1>
-                {post.excerpt && <p className="post-card-excerpt">{post.excerpt}</p>}
+                {post.excerpt && <p className="post-excerpt-lead">{post.excerpt}</p>}
             </header>
 
             <div

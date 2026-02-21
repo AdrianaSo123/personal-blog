@@ -4,53 +4,64 @@ import { getAllPosts } from '@/lib/posts';
 
 export default async function HomePage() {
     const [home, posts] = await Promise.all([getHomeContent(), getAllPosts()]);
+    const latestPosts = posts.slice(0, 3);
 
     return (
         <>
-            <section className="hero">
-                <h1 className="hero-tagline">{home.tagline}</h1>
+            {/* ── Hero ── */}
+            <section className="home-hero">
+                <span className="hero-eyebrow">Personal Blog</span>
+                <h1 className="hero-headline">{home.tagline}</h1>
                 <div
                     className="hero-body"
                     dangerouslySetInnerHTML={{ __html: home.bodyHtml }}
                 />
+                <Link href="/blog" className="hero-cta">
+                    Read the blog →
+                </Link>
             </section>
 
-            <div className="section-header">
-                <span className="section-title">Recent Posts</span>
-                <span className="section-line" />
-            </div>
+            {/* ── Latest posts preview ── */}
+            {latestPosts.length > 0 && (
+                <>
+                    <div className="section-divider">
+                        <span className="section-label">Latest Posts</span>
+                        <span className="divider-line" />
+                        {posts.length > 3 && (
+                            <Link href="/blog" className="view-all-link">
+                                View all {posts.length} →
+                            </Link>
+                        )}
+                    </div>
 
-            {posts.length === 0 ? (
-                <div className="empty-state">
-                    <p>No posts yet — drop a <code>.md</code> file in <code>content/posts/</code></p>
-                </div>
-            ) : (
-                <div className="post-list">
-                    {posts.map((post) => (
-                        <Link key={post.slug} href={`/blog/${post.slug}`} className="post-card">
-                            <div className="post-card-meta">
-                                <span className="post-card-date">
-                                    {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
-                                        year: 'numeric',
-                                        month: 'long',
-                                        day: 'numeric',
-                                    })}
-                                </span>
-                                {post.tags && post.tags.length > 0 && (
-                                    <div className="post-card-tags">
-                                        {post.tags.slice(0, 2).map((tag) => (
-                                            <span key={tag} className="tag">{tag}</span>
-                                        ))}
-                                    </div>
+                    <div className="posts-grid">
+                        {latestPosts.map((post) => (
+                            <Link key={post.slug} href={`/blog/${post.slug}`} className="post-grid-card">
+                                <div className="post-card-meta">
+                                    <span className="post-card-date">
+                                        {new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: 'short',
+                                            day: 'numeric',
+                                        })}
+                                    </span>
+                                    {post.tags && post.tags.length > 0 && (
+                                        <div className="post-card-tags">
+                                            {post.tags.slice(0, 2).map((tag) => (
+                                                <span key={tag} className="tag">{tag}</span>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                                <h2 className="post-card-title">{post.title}</h2>
+                                {post.excerpt && (
+                                    <p className="post-card-excerpt">{post.excerpt}</p>
                                 )}
-                            </div>
-                            <h2 className="post-card-title">{post.title}</h2>
-                            {post.excerpt && (
-                                <p className="post-card-excerpt">{post.excerpt}</p>
-                            )}
-                        </Link>
-                    ))}
-                </div>
+                                <span className="read-more">Read post →</span>
+                            </Link>
+                        ))}
+                    </div>
+                </>
             )}
         </>
     );

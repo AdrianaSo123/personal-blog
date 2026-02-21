@@ -8,16 +8,16 @@ export default async function BlogIndexPage() {
         <>
             <div className="page-hero">
                 <h1 className="page-title">All Posts</h1>
-                <p className="page-subtitle">{posts.length} post{posts.length !== 1 ? 's' : ''} so far</p>
-            </div>
-
-            <div className="section-header">
-                <span className="section-line" />
+                <p className="page-subtitle">
+                    {posts.length} {posts.length === 1 ? 'post' : 'posts'} — sorted by date
+                </p>
             </div>
 
             {posts.length === 0 ? (
                 <div className="empty-state">
-                    <p>No posts yet — drop a <code>.md</code> file in <code>content/posts/</code></p>
+                    <p>
+                        No posts yet — drop a <code>.md</code> file in <code>content/posts/</code>
+                    </p>
                 </div>
             ) : (
                 <div className="post-list">
